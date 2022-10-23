@@ -7,3 +7,8 @@ For the project we use the ACDC challenge database (https://acdc.creatis.insa-ly
 The project is made by:
 Sipos Levente - NLLIEC
 Horváth Bence - 
+
+### Files
+
+full_image_preprocessing.ipynb - downloads the scans and unrolls them into 2D images, then saves copies at the desired downscale for different phases of training.
+másik fájl - 

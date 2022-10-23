@@ -7,9 +7,9 @@ For the project we use the ACDC challenge database (https://acdc.creatis.insa-ly
 We have decided to start by using 2 different apraches. In one we use the whole scans and in the other we only use smaller images containing only the hearts.
 
 The project is made by:
-Sipos Levente - NLLIEC
-Horváth Bence - ET2EPO
-Ramács Gábor - I4K6DA
+- Sipos Levente - NLLIEC
+- Horváth Bence - ET2EPO
+- Ramács Gábor - I4K6DA
 
 ### Files
 

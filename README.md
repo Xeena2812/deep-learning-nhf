@@ -1,2 +1,9 @@
-# deep learning nhf
- 
+# Deep Learning NHF
+
+The Goal of this project is to increase the resolution of low resolution heart MRI scans. MRI (Magnetic Resonance Imaging) is one of the primary methods of biomedical imaging. For an MRI machine to capture high resolution images longer exposure time is needed. However longer exposure times expose scans to problems like the subject moving during the scan, resulting in a blurry scan. To minimize this risk short exposure times are used, which result in stable, but low resolution scans, leading to the same problem from a different angle. In this project we attempt to use deep learning to create super resolution images of low resolution MRI scans.
+
+For the project we use the ACDC challenge database (https://acdc.creatis.insa-lyon.fr/#challenges)
+
+The project is made by:
+Sipos Levente - NLLIEC
+Horváth Bence - 

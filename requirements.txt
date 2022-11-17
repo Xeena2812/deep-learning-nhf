@@ -1,0 +1,11 @@
+numpy
+opencv-python
+nibabel
+scikit-learn
+os
+matplotlib
+gdown
+zipfile
+gzip
+shutil
+math

@@ -92,14 +92,14 @@ def unroll_scale_images():
                 ft[150:,:]=0
                 ft[:,150:]=0
 
-                inverse_tf = np.fft.ifftshift(np.fft.ifftn(np.fft.ifftshift(np.fft.ifftshift(np.fft.ifftn(np.fft.ifftshift(np.fft.ifftshift(np.fft.ifftn(np.fft.ifftshift(ft))))))))).real
+                inverse_ft=np.fft.ifftshift(np.fft.fftn(np.fft.ifftshift(ft))).real
                 
                 x_diff = (256 - expanded_image.shape[1]) // 2
                 y_diff = (256 - expanded_image.shape[0]) // 2
 
                 expanded_image = np.pad(expanded_image, ((y_diff, y_diff), (x_diff, x_diff)), 'constant')
-                downscaled_image = np.pad(inverse_tf, ((y_diff, y_diff), (x_diff, x_diff)), 'constant') * 10e11
-
+                downscaled_image = np.pad(inverse_ft, ((y_diff, y_diff), (x_diff, x_diff)), 'constant')
+                
                 cv2.imwrite(f'./train_valid/original_images/{file[:-4]}_{i}_{j}.png', expanded_image)
                 cv2.imwrite(f'./train_valid/downscaled_images/{file[:-4]}_{i}_{j}.png', downscaled_image)
         
@@ -114,9 +114,9 @@ def show_example_images():
     scaled_down = plt.imread('./train_valid/downscaled_images/patient001_0_0.png')
 
     plt.subplot(1, 2, 1)
-    plt.imshow(full_scale)
+    plt.imshow(full_scale, cmap='gray')
     plt.subplot(1, 2, 2)
-    plt.imshow(scaled_down)
+    plt.imshow(scaled_down, cmap='gray')
 
 
 """

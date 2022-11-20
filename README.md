@@ -9,9 +9,10 @@ We have decided to start by using 2 different apraches. In one we use the whole 
 The project is made by:
 - Sipos Levente - NLLIEC
 - Horváth Bence - ET2EPO
-- Ramács Gábor - I4K6DA
 
 ### Files
 
 full_image_preprocessing.ipynb - downloads the scans and unrolls them into 2D images, then saves copies at the desired downscale for different phases of training.
 small_heat_preprocessing.ipynb - downloads the preprocessed 96 by 96 pixel png-s and and creates a basic training dataset
+training.ipynb - the network and training
+image_preprocessing.py - image preprocessing functions

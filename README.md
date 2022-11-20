@@ -6,7 +6,11 @@ For the project we use the ACDC challenge database (https://acdc.creatis.insa-ly
 
 We have decided to start by using 2 different apraches. In one we use the whole scans and in the other we only use smaller images containing only the hearts.
 
-The network is a GAN and we start by training the generator alone. The inputs are the downscaled images and the outputs the upscaled.
+The network is a 2D convolutional GAN and we start by training the generator alone. The inputs are the downscaled images and the outputs the upscaled.
+
+The evaluation, once the network has been tested and trained, will be done using PSNR (Peak Signal-to-Noise Ratio) and SSIM (Structural SIMilarity)
+
+To run the training image_preprocessing.py needs to be beside training.ipynb.
 
 The project is made by:
 - Sipos Levente - NLLIEC

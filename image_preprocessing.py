@@ -20,7 +20,7 @@ from numpy.fft import fft, ifft
 """
 def download_db():
     training_url = 'https://drive.google.com/u/0/uc?id=1FTUNw1gIYjIphJBfF9p-cAEa2fZVz76G&export=download'
-    testing_url = 'https://drive.google.com/uc?id=1GBSeFwhOutknsu8IBqvjcjdXbjNUF1P5&export=download'
+    testing_url = 'https://drive.google.com/u/0/uc?id=1BTPWTKHxNDXgOr1jM3S6iYM0clGjHld4&export=download'
 
     # Download the zips from the given urls
     gdown.download(training_url, 'training.zip', quiet=False, verify=False)
@@ -166,5 +166,13 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
     
     randperm = np.random.permutation(len(X_train))
     X_train,Y_train = np.array(X_train)[randperm.astype(int)], np.array(Y_train)[randperm]
+
+    X_valid=np.reshape(np.asarray(X_valid),(int(dataset_size*valid_split*16),4096))
+    Y_valid=np.asarray(Y_valid)
+    Y_valid=Y_valid.reshape((int(dataset_size*valid_split),256,256))
+    Y_valid=np.reshape(np.asarray(Y_valid),(int(dataset_size*valid_split*16),64,64))
+    Y_train=Y_train.reshape((int(dataset_size*train_split),256,256))
+    Y_train=np.reshape(Y_train,(int(dataset_size*train_split*16),64,64))
+    X_train=np.reshape(X_train,(int(dataset_size*train_split*16),4096))
 
     return X_train, Y_train, X_valid, Y_valid, X_test, Y_test

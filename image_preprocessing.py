@@ -56,8 +56,8 @@ def extract_files():
 
     shutil.rmtree('./train_valid/training')
     shutil.rmtree('./train_valid/testing')
-    os.remove('./training.zip')
-    os.remove('./testing.zip')
+    #os.remove('./training.zip')
+    #os.remove('./testing.zip')
     os.remove('./train_valid/patients/patient038.nii')
     os.remove('./train_valid/patients/patient057.nii')
     os.remove('./train_valid/patients/patient085.nii')
@@ -167,12 +167,42 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
     randperm = np.random.permutation(len(X_train))
     X_train,Y_train = np.array(X_train)[randperm.astype(int)], np.array(Y_train)[randperm]
 
-    X_valid=np.reshape(np.asarray(X_valid),(int(dataset_size*valid_split*16),4096))
-    Y_valid=np.asarray(Y_valid)
-    Y_valid=Y_valid.reshape((int(dataset_size*valid_split),256,256))
-    Y_valid=np.reshape(np.asarray(Y_valid),(int(dataset_size*valid_split*16),64,64))
-    Y_train=Y_train.reshape((int(dataset_size*train_split),256,256))
-    Y_train=np.reshape(Y_train,(int(dataset_size*train_split*16),64,64))
-    X_train=np.reshape(X_train,(int(dataset_size*train_split*16),4096))
 
-    return X_train, Y_train, X_valid, Y_valid, X_test, Y_test
+    Y_valid=np.asarray(Y_valid).reshape((int(valid_split*num_images),256,256))
+    Y_train=np.asarray(Y_train).reshape((int(train_split*num_images),256,256))
+
+
+
+    y=[]
+    for elem in Y_train:
+        for i in range(0,4):
+            for j in range(0,4):
+                y.append(elem[i*64:i*64+64,j*64:j*64+64])
+    y=np.asarray(y).reshape((int(train_split*num_images)*16,64,64))
+    
+
+    x=[]
+    for elem in X_train:
+        for i in range(0,4):
+            for j in range(0,4):
+                x.append(elem[i*64:i*64+64,j*64:j*64+64])
+    x=np.asarray(x).reshape((int(train_split*num_images)*16,4096))
+
+    z=[]
+    for elem in Y_valid:
+        for i in range(0,4):
+            for j in range(0,4):
+                z.append(elem[i*64:i*64+64,j*64:j*64+64])
+    z=np.asarray(z).reshape((int(valid_split*num_images*16),64,64))
+    
+
+    zs=[]
+    for elem in X_valid:
+        for i in range(0,4):
+            for j in range(0,4):
+                zs.append(elem[i*64:i*64+64,j*64:j*64+64])
+    zs=np.asarray(zs).reshape((int(valid_split*num_images*16),64*64))
+
+    
+
+    return x, y, zs, z, X_test, Y_test

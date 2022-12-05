@@ -163,4 +163,6 @@ seed = tf.random.normal([num_examples_to_generate, noise_dim])
 
 
 train_generator(generator,X_train,Y_train,X_valid,Y_valid,0.0001,2,100)
-generator.save('model1')
+
+generator.save('model')
+

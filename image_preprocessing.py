@@ -124,7 +124,7 @@ def show_example_images():
 """
 def load_and_transform_data(train_split, valid_split, test_split, num_images=100):
     # goes to other file
-    # #np.random.seed(2812)
+    np.random.seed(2812)
 
     dataset_path = './train_valid/downscaled_images/'
 

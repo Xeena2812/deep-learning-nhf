@@ -140,7 +140,7 @@ def train_generator(generator, X, Y, X_valid, Y_valid, learning_rate, batch_size
   generator.compile(loss='mse',optimizer=keras.optimizers.Adam(learning_rate=learning_rate),metrics=['accuracy'])
   generator.fit(X,Y,batch_size=batch_size,epochs=epochs,verbose=2,validation_data=(X_valid,Y_valid),shuffle= True)
 
-dataset_size=200
+dataset_size=400
 train_split=0.7
 valid_split=0.2
 test_split=0.1
@@ -162,7 +162,7 @@ seed = tf.random.normal([num_examples_to_generate, noise_dim])
 
 
 
-train_generator(generator,X_train,Y_train,X_valid,Y_valid,0.0001,2,100)
+train_generator(generator,X_train,Y_train,X_valid,Y_valid,0.0001,2,200)
 
 generator.save('model')
 

@@ -158,7 +158,7 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
 
     X_train = scaler.fit_transform(X_train)
     X_valid = scaler.fit_transform(X_valid)
-    X_test = scaler.fit_transform(X_test)
+    #X_test = scaler.fit_transform(X_test)
 
     X_train = [i.reshape(256, 256) for i in X_train]
     X_valid = [i.reshape(256, 256) for i in X_valid]
@@ -203,6 +203,6 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
                 zs.append(elem[i*64:i*64+64,j*64:j*64+64])
     zs=np.asarray(zs).reshape((int(valid_split*num_images*16),64*64))
 
-    
+    plt.imshow(X_test[0])
 
     return x, y, zs, z, X_test, Y_test

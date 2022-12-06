@@ -66,14 +66,7 @@ def ConvBlock(x,kernel_size) :
     x = layers.Activation('relu')(x)
     x=layers.Conv2D(16,kernel_size,strides=1,padding='same')(x)
     x=layers.Conv2D(16,(1,1),strides=1,padding='same')(x)
-    x=layers.BatchNormalization()(x)
-    x = layers.Activation('relu')(x)
-    x=layers.Conv2D(16,kernel_size,strides=1,padding='same')(x)
-    x=layers.Conv2D(16,(1,1),strides=1,padding='same')(x)
-    x=layers.BatchNormalization()(x)
-    x = layers.Activation('relu')(x)
-    x=layers.Conv2D(16,kernel_size,strides=1,padding='same')(x)
-    x=layers.Conv2D(16,(1,1),strides=1,padding='same')(x)
+    
     
     return x
 

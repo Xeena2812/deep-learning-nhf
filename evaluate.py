@@ -9,7 +9,7 @@ import cv2
 
 
 
-generator=keras.models.load_model('model')
+generator=keras.models.load_model('model1')
 
 
 X_train, Y_train, X_valid, Y_valid, X_test, Y_test = pre_proc.load_and_transform_data(0.7, 0.2,0.1 , 100)
@@ -78,17 +78,21 @@ for f in range(0,10):
 psnr=[]
 psnr2=[]
 for i in range(0,160):
-    cv2.imwrite("image.png",np.asarray(generated_image[i]*255))
+    plt.imsave("image.png",np.asarray(generated_image[i,:,:,0]))
     image=cv2.imread("image.png")
-
-    cv2.imwrite("image.png",np.asarray(y[i]*128))
+    image[:,:,0]=image[:,:,1]
+    image[:,:,2]=image[:,:,1]
+    
+    cv2.imwrite("image.png",np.asarray(y[i]*255))
     imagey=cv2.imread("image.png")
     
-    cv2.imwrite("image.png",np.asarray(x[i].reshape((64,64))*128))
+    cv2.imwrite("image.png",np.asarray(x[i].reshape((64,64))*255))
     imagex=cv2.imread("image.png")
+
     
-    psnr.append(tf.image.psnr(imagey,image,128))
-    psnr2.append(tf.image.psnr(imagex,image,128))
+    
+    psnr.append(tf.image.psnr(imagey/256,image,1))
+    psnr2.append(tf.image.psnr(imagey/256,imagex/256,1))
     
 print("Peak signal-to-noise ratio of rescaled and original:")
 print("AVG:")

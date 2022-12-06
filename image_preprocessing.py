@@ -156,8 +156,8 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
 
     scaler = preprocessing.StandardScaler()
 
-    X_train = scaler.fit_transform(X_train)
-    X_valid = scaler.fit_transform(X_valid)
+    #X_train = scaler.fit_transform(X_train)
+    #X_valid = scaler.fit_transform(X_valid)
     #X_test = scaler.fit_transform(X_test)
 
     X_train = [i.reshape(256, 256) for i in X_train]

@@ -91,7 +91,7 @@ for i in range(0,160):
 
     
     
-    psnr.append(tf.image.psnr(imagey/256,image,1))
+    psnr.append(tf.image.psnr(imagey/256,image/256,1))
     psnr2.append(tf.image.psnr(imagey/256,imagex/256,1))
     
 print("Peak signal-to-noise ratio of rescaled and original:")

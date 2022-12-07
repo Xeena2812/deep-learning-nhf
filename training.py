@@ -31,6 +31,16 @@ def make_generator_model():
     y.append(x)
     x=layers.Concatenate(axis=3)(y)
     
+     
+    
+    x=layers.Conv2D(32,(1,1),strides=1,padding='same')(x)
+    x=DenseBlock(x, 4)
+    y.append(x)
+    x=layers.Concatenate(axis=3)(y)
+    x=layers.Conv2D(32,(1,1),strides=1,padding='same')(x)
+    x=DenseBlock(x, 4)
+    y.append(x)
+    x=layers.Concatenate(axis=3)(y)
     
     
     

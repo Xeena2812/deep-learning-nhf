@@ -9,7 +9,7 @@ import cv2
 
 
 
-generator=keras.models.load_model('model1')
+generator=keras.models.load_model('model')
 
 
 X_train, Y_train, X_valid, Y_valid, X_test, Y_test = pre_proc.load_and_transform_data(0.7, 0.2,0.1 , 100)

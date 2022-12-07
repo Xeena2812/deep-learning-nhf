@@ -52,7 +52,14 @@ def DenseBlock(x, size):
         x=ConvBlock(x,(3,3))
         skip.append(x)
         x=layers.Concatenate(axis=3)(skip)
-    
+        
+        x=ConvBlock(x,(3,3))
+        skip.append(x)
+        x=layers.Concatenate(axis=3)(skip)
+        
+        x=ConvBlock(x,(3,3))
+        skip.append(x)
+        x=layers.Concatenate(axis=3)(skip)
     
     return x
 
@@ -62,10 +69,7 @@ def ConvBlock(x,kernel_size) :
     x=layers.Conv2D(16,kernel_size,strides=1,padding='same')(x)
     x=layers.Conv2D(16,(1,1),strides=1,padding='same')(x)
     #x=layers.Dropout(0.3)(x)
-    x=layers.BatchNormalization()(x)
-    x = layers.Activation('relu')(x)
-    x=layers.Conv2D(16,kernel_size,strides=1,padding='same')(x)
-    x=layers.Conv2D(16,(1,1),strides=1,padding='same')(x)
+  
     
     
     return x

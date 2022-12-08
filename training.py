@@ -1,12 +1,11 @@
-import glob
-import imageio
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import PIL
+
 from tensorflow.keras import Sequential
 from tensorflow.keras import layers
-import time
+
 import tensorflow as tf
 import keras
 from keras.models import Model

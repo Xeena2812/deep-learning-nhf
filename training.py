@@ -56,7 +56,13 @@ def DenseBlock(x, size):
         x=ConvBlock(x,(3,3))
         skip.append(x)
         x=layers.Concatenate(axis=3)(skip)
+        x=ConvBlock(x,(3,3))
+        skip.append(x)
+        x=layers.Concatenate(axis=3)(skip)
         
+        x=ConvBlock(x,(3,3))
+        skip.append(x)
+        x=layers.Concatenate(axis=3)(skip)
         
     
     return x

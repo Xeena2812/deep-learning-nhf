@@ -26,10 +26,7 @@ def make_generator_model():
     y.append(x)
     x=layers.Concatenate(axis=3)(y)
     
-    x=layers.Conv2D(32,(1,1),strides=1,padding='same')(x)
-    x=DenseBlock(x, 4)
-    y.append(x)
-    x=layers.Concatenate(axis=3)(y)
+    
     
      
     
@@ -56,13 +53,7 @@ def DenseBlock(x, size):
         x=ConvBlock(x,(3,3))
         skip.append(x)
         x=layers.Concatenate(axis=3)(skip)
-        x=ConvBlock(x,(3,3))
-        skip.append(x)
-        x=layers.Concatenate(axis=3)(skip)
         
-        x=ConvBlock(x,(3,3))
-        skip.append(x)
-        x=layers.Concatenate(axis=3)(skip)
         
     
     return x
@@ -175,7 +166,7 @@ seed = tf.random.normal([num_examples_to_generate, noise_dim])
 
 
 
-train_generator(generator,X_train,Y_train,X_valid,Y_valid,0.0001,2,100)
+train_generator(generator,X_train,Y_train,X_valid,Y_valid,0.0001,2,1)
 
 generator.save('model')
 

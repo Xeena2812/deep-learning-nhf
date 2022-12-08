@@ -37,18 +37,7 @@ def make_generator_model():
     x=DenseBlock(x, 4)
     y.append(x)
     x=layers.Concatenate(axis=3)(y)
-    x=layers.Conv2D(32,(1,1),strides=1,padding='same')(x)
-    x=DenseBlock(x, 4)
-    y.append(x)
-    x=layers.Concatenate(axis=3)(y)
-    x=layers.Conv2D(32,(1,1),strides=1,padding='same')(x)
-    x=DenseBlock(x, 4)
-    y.append(x)
-    x=layers.Concatenate(axis=3)(y)
-    x=layers.Conv2D(32,(1,1),strides=1,padding='same')(x)
-    x=DenseBlock(x, 4)
-    y.append(x)
-    x=layers.Concatenate(axis=3)(y)
+   
  
     
     
@@ -71,20 +60,7 @@ def DenseBlock(x, size):
         skip.append(x)
         x=layers.Concatenate(axis=3)(skip)
         
-        x=ConvBlock(x,(3,3))
-        skip.append(x)
-        x=layers.Concatenate(axis=3)(skip)
         
-        x=ConvBlock(x,(3,3))
-        skip.append(x)
-        x=layers.Concatenate(axis=3)(skip)
-        x=ConvBlock(x,(3,3))
-        skip.append(x)
-        x=layers.Concatenate(axis=3)(skip)
-        
-        x=ConvBlock(x,(3,3))
-        skip.append(x)
-        x=layers.Concatenate(axis=3)(skip)
     
     return x
 

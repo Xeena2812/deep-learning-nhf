@@ -16,11 +16,13 @@ To run the training and the evaluation you will need the following python librar
 - zipfile36
 - opencv-python
 - scikit-learn
+
 After all the libraries have been downloaded you will need to clone this repository, open it and download the dataset.
 To do that use the following commands:
 - cd deep-learning-nhf
 - gdown https://drive.google.com/u/0/uc?id=1f3_3hflYwVTNU4qCBJ7YK3wnkUoR6YWi&export=download
 - gdown https://drive.google.com/u/0/uc?id=18DXZUo5GyeB0xCejjcxidBWPzqTA6XhH&export=download
+
 Once the previous steps ha been done you can begin the preproceccing, training and evaluation.
 Use these commands in order:
 - python setup.py
@@ -29,6 +31,10 @@ Use these commands in order:
 - training.train()
 - exit()
 - python evaluate.py
+
+This will run a very short training cycle and evaluate the resulting model.
+
+To access the trained model or the resultin evaluation pictures download them from here: https://drive.google.com/drive/folders/1KJ9xrMav3L2WNEiRz3fBjElGAuDRGDg9
 
 The project is made by:
 - Sipos Levente - NLLIEC

@@ -120,7 +120,8 @@ def show_example_images():
 
 
 """
-    Creating training, validation and test datasets. After creation the sets are
+    Creating training, validation and test datasets.
+    Loads individual images makes them 256*256 pixel and breaks them up into 16 64*64 pixrl images 
 """
 def load_and_transform_data(train_split, valid_split, test_split, num_images=100):
     # goes to other file

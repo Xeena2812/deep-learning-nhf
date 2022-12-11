@@ -20,7 +20,7 @@ from numpy.fft import fft, ifft
 """
 def download_db():
     training_url = 'https://drive.google.com/u/0/uc?id=1FTUNw1gIYjIphJBfF9p-cAEa2fZVz76G&export=download'
-    testing_url = 'https://drive.google.com/uc?id=1GBSeFwhOutknsu8IBqvjcjdXbjNUF1P5&export=download'
+    testing_url = 'https://drive.google.com/u/0/uc?id=1BTPWTKHxNDXgOr1jM3S6iYM0clGjHld4&export=download'
 
     # Download the zips from the given urls
     gdown.download(training_url, 'training.zip', quiet=False, verify=False)
@@ -56,8 +56,8 @@ def extract_files():
 
     shutil.rmtree('./train_valid/training')
     shutil.rmtree('./train_valid/testing')
-    os.remove('./training.zip')
-    os.remove('./testing.zip')
+    #os.remove('./training.zip')
+    #os.remove('./testing.zip')
     os.remove('./train_valid/patients/patient038.nii')
     os.remove('./train_valid/patients/patient057.nii')
     os.remove('./train_valid/patients/patient085.nii')
@@ -120,11 +120,12 @@ def show_example_images():
 
 
 """
-    Creating training, validation and test datasets. After creation the sets are
+    Creating training, validation and test datasets.
+    Loads individual images makes them 256*256 pixel and breaks them up into 16 64*64 pixrl images 
 """
 def load_and_transform_data(train_split, valid_split, test_split, num_images=100):
     # goes to other file
-    # #np.random.seed(2812)
+    np.random.seed(2812)
 
     dataset_path = './train_valid/downscaled_images/'
 
@@ -156,9 +157,9 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
 
     scaler = preprocessing.StandardScaler()
 
-    X_train = scaler.fit_transform(X_train)
-    X_valid = scaler.fit_transform(X_valid)
-    X_test = scaler.fit_transform(X_test)
+    #X_train = scaler.fit_transform(X_train)
+    #X_valid = scaler.fit_transform(X_valid)
+    #X_test = scaler.fit_transform(X_test)
 
     X_train = [i.reshape(256, 256) for i in X_train]
     X_valid = [i.reshape(256, 256) for i in X_valid]
@@ -167,4 +168,42 @@ def load_and_transform_data(train_split, valid_split, test_split, num_images=100
     randperm = np.random.permutation(len(X_train))
     X_train,Y_train = np.array(X_train)[randperm.astype(int)], np.array(Y_train)[randperm]
 
-    return X_train, Y_train, X_valid, Y_valid, X_test, Y_test
+
+    Y_valid=np.asarray(Y_valid).reshape((int(valid_split*num_images),256,256))
+    Y_train=np.asarray(Y_train).reshape((int(train_split*num_images),256,256))
+
+
+
+    y=[]
+    for elem in Y_train:
+        for i in range(0,4):
+            for j in range(0,4):
+                y.append(elem[i*64:i*64+64,j*64:j*64+64])
+    y=np.asarray(y).reshape((int(train_split*num_images)*16,64,64))
+    
+
+    x=[]
+    for elem in X_train:
+        for i in range(0,4):
+            for j in range(0,4):
+                x.append(elem[i*64:i*64+64,j*64:j*64+64])
+    x=np.asarray(x).reshape((int(train_split*num_images)*16,4096))
+
+    z=[]
+    for elem in Y_valid:
+        for i in range(0,4):
+            for j in range(0,4):
+                z.append(elem[i*64:i*64+64,j*64:j*64+64])
+    z=np.asarray(z).reshape((int(valid_split*num_images*16),64,64))
+    
+
+    zs=[]
+    for elem in X_valid:
+        for i in range(0,4):
+            for j in range(0,4):
+                zs.append(elem[i*64:i*64+64,j*64:j*64+64])
+    zs=np.asarray(zs).reshape((int(valid_split*num_images*16),64*64))
+
+    plt.imshow(X_test[0])
+
+    return x, y, zs, z, X_test, Y_test

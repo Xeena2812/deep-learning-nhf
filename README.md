@@ -4,13 +4,39 @@ The Goal of this project is to increase the resolution of low resolution heart M
 
 For the project we use the ACDC challenge database (https://acdc.creatis.insa-lyon.fr/#challenges)
 
-We have decided to start by using 2 different apraches. In one we use the whole scans and in the other we only use smaller images containing only the hearts.
+The network is a 2D convolutional network based on DenseNet. The inputs are the downscaled images and the outputs the upscaled.
 
-The network is a 2D convolutional GAN and we start by training the generator alone. The inputs are the downscaled images and the outputs the upscaled.
+To run the training and the evaluation you will need the following python libraries:
+- tensorflow
+- nibabel
+- matplotlib
+- gdown
+- zipfile36
+- opencv-python
+- scikit-learn
 
-The evaluation, once the network has been tested and trained, will be done using PSNR (Peak Signal-to-Noise Ratio) and SSIM (Structural SIMilarity)
+After all the libraries have been downloaded you will need to clone this repository, open it and download the dataset.
+To do that use the following commands in console:
+- cd deep-learning-nhf
+- gdown https://drive.google.com/u/0/uc?id=1f3_3hflYwVTNU4qCBJ7YK3wnkUoR6YWi&export=download
+- gdown https://drive.google.com/u/0/uc?id=18DXZUo5GyeB0xCejjcxidBWPzqTA6XhH&export=download
 
-To run the training image_preprocessing.py needs to be beside training.ipynb.
+Once the previous steps ha been done you can begin the preproceccing, training and evaluation.    
+Do these in order:
+- run setup.py
+- in python
+-   import training
+-   training.train()
+- run evaluate.py
+
+This will run a very short training cycle and evaluate the resulting model.
+
+To run the training that we did write: training.train(4,4,400,0.0001,2,100)
+
+To access the trained model or the resultin evaluation pictures download them from here: https://drive.google.com/drive/folders/1KJ9xrMav3L2WNEiRz3fBjElGAuDRGDg9
+
+To run the evaluations of the pretrained models download them, unzip the chosen model into the repository and run evaluate.py. The previous link also contains the evaluation pictures
+
 
 The project is made by:
 - Sipos Levente - NLLIEC
@@ -18,11 +44,18 @@ The project is made by:
 
 ### Files
 
-full_image_preprocessing.ipynb - downloads the scans and unrolls them into 2D images, then saves copies at the desired downscale for different phases of trining.  
-small_heat_preprocessing.ipynb - downloads the preprocessed 96 by 96 pixel png-s and and creates a basic training dataset  
-training.ipynb - the network and training  
+training.py - the creation, training and saving of the model    
 image_preprocessing.py - image preprocessing functions  
+evaluate.py - evaluating the model and creation of example images   
+setup.py - unzipping and unrolling the NII images   
+gpu.py - checks weather tensorflow has access to a GPU    
+
 
 ### Sources
 https://www.tensorflow.org/tutorials/generative/dcgan  
 https://acdc.creatis.insa-lyon.fr/description/databases.html  
+https://github.com/Hadrien-Cornier/E6040-superresolution-project/blob/master/main.ipynb   
+https://arxiv.org/ftp/arxiv/papers/1707/1707.05425.pdf    
+https://arxiv.org/pdf/2003.01217.pdf    
+https://arxiv.org/abs/1608.06993v5    
+https://arxiv.org/pdf/1609.04802v5.pdf    

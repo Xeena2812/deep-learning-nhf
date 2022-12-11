@@ -23,8 +23,8 @@ To do that use the following commands in console:
 - gdown https://drive.google.com/u/0/uc?id=1f3_3hflYwVTNU4qCBJ7YK3wnkUoR6YWi&export=download
 - gdown https://drive.google.com/u/0/uc?id=18DXZUo5GyeB0xCejjcxidBWPzqTA6XhH&export=download
 
-Once the previous steps ha been done you can begin the preproceccing, training and evaluation.
-Use these commands in order:
+Once the previous steps ha been done you can begin the preproceccing, training and evaluation.    
+Do these in order:
 - run setup.py
 - in python
 -   import training

@@ -4,8 +4,6 @@ The Goal of this project is to increase the resolution of low resolution heart M
 
 For the project we use the ACDC challenge database (https://acdc.creatis.insa-lyon.fr/#challenges)
 
-We have decided to start by using 2 different apraches. In one we use the whole scans and in the other we only use smaller images containing only the hearts.
-
 The network is a 2D convolutional network based on DenseNet. The inputs are the downscaled images and the outputs the upscaled.
 
 To run the training and the evaluation you will need the following python libraries:
